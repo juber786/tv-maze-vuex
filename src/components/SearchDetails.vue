@@ -57,18 +57,11 @@
 </template>
 <script setup>
 import { useStore } from "vuex";
-import { onMounted, computed, watch } from "vue";
-import { useRoute } from "vue-router";
-const route = useRoute();
+import { computed } from "vue";
+const store = useStore();
 const tvShows = computed(() => store.state.searchshows);
 const loading = computed(() => store.state.loading);
-const store = useStore();
-onMounted(() => {
-  store.dispatch("SEARCH_DATA", route.query.key);
-});
-watch(route, (route) => {
-  store.dispatch("SEARCH_DATA", route.query.key);
-});
+
 </script>
 <style>
 .search-container {

@@ -56,18 +56,7 @@ const selectedGenre = ref("");
 const selectedCountry = ref("");
 const selectedNetwork = ref("");
 function filterData(val, type) {
-  if (type === "Genre") {
-    selectedCountry.value = "";
-    selectedNetwork.value = "";
-  }
-  if (type === "Country") {
-    selectedGenre.value = "";
-    selectedNetwork.value = "";
-  }
-  if (type === "Network") {
-    selectedGenre.value = "";
-    selectedNetwork.value = "";
-  }
+  // dispatch  homeshow homeshowhistory => clearFilter new action name
   store.commit("MUTATE_FILTER", { val, type });
 }
 </script>
