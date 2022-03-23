@@ -1,0 +1,156 @@
+/*
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com
+Twitter: @rich_clark
+*/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+html{scroll-behavior: smooth;}
+body {
+    line-height:1;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;  
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+
+input, select {
+    vertical-align:middle;
+}
+
+
+/* css start */
+
+.content-holder {display:flex; justify-content:space-between}
+  .main-block{padding-top: 25px;  background: #eef0f3;}
+  .card-sort-holder{flex-basis: 80%}
+  .card-wrapper{ padding:10px }
+  .card-details{ margin-top: 10px;}
+  .cards-block{ margin-bottom: 25px; transition: transform .2s; background: #fff; padding:5px; border:1px solid #ddd;  position: relative; cursor: pointer;}
+  .cards-block img{ width: 100%;}
+  .card-title{font-size: 18px; margin-bottom:5px!important; margin-bottom: 0px; overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+ width: 100%;
+ display: inline-block;}
+  .lang{ position: absolute;left: 5px; top: 5px;font-size: 13px; background: #45ab9f;padding: 5px; color: #fff;}
+  .mo-type{ font-size: 12px;
+    color: #333;
+    background: #f1f1f1;
+    margin-right: 4px;
+    padding: 0px 1px; }
+  .card-details i{color: #45ab9f; font-size: 13px;}
+  .cards-block:hover{box-shadow: 0px 2px 8px #ccc; transform: scale(1.02); z-index: 10;}
+  .no-rating i{ color: #f1f1f1;}
+
+  .filter-holder{flex-basis: 20%}
+  .filter-block{  padding: 5px;}
+  .filter-content{ background: #fff; padding: 10px;  margin-top: 5px; box-shadow: 0px 2px 8px #ccc;}
+  .filter-head{font-size: 18px;margin-bottom: 0px;padding-bottom: 10px;border-bottom: 1px solid #ddd;text-transform: uppercase;}
+  .rating{margin-top: 10px; font-size: 13px; display: flex;
+    }
+
+  .sort-by{display: flex; padding:10px;}
+  .sort-title{text-transform: uppercase;font-weight: bold;}
+  .sort-option ul{ margin-left: 0px; list-style-type: none;}
+  .sort-option li {float: left; margin:0 15px;}
+  .sort-option li a{ color: #999; text-decoration: none;}
+  .sort-option li a:hover{    color: #45ab9f!important;
+    border-bottom: 2px solid #45ab9f;
+    padding-bottom: 6px;}
+  .selected-sort{color: #45ab9f!important;border-bottom: 2px solid #45ab9f;padding-bottom: 6px;}
+ 
+  .filter-content label{margin-bottom: 10px; margin-top: 15px;}
+  .app-filter-btn{margin-top: 10px; background: #45ab9f; display: block; width: 100%;}
+
+  .scroll-top{position:fixed; transition: 0.5; background:#45ab9f; color: #fff; width: 40px; height: 40px; box-shadow: 0px 2px 8px #222; display: flex; justify-content: center; align-items: center;  border-radius: 25px; bottom: 25px; right: 25px; z-index: 2000;}
+
+  
+  .to-indigo-400 {background:#45ab9f!important;}
+  .from-blue-400 {background:#45ab9f!important;}
+
+  
+

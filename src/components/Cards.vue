@@ -1,0 +1,56 @@
+<template>
+  <div v-if="tvShows.length" class="row">
+      <div class="col-md-3 col-6" v-for="show in tvShows" :key="show.id">
+        <div class="cards-block">
+          <span class="lang">{{ show.language }}</span>
+          <img
+            v-if="show.image && show.image.medium"
+            class="imgSm"
+            :src="show.image.medium"
+          />
+          <div class="card-details">
+            <h2 class="card-title">{{ show.name }}</h2>
+            <div v-if="show.genres.length">
+              <span
+                class="mo-type"
+                v-for="(genre, index) in show.genres"
+                :key="index"
+                >{{ genre }}&nbsp;</span
+              >
+            </div>
+            <div v-else><span class="mo-type">NA</span></div>
+
+            <div class="rating">
+              <div v-if="show.rating.average">
+                <i class="fas fa-star fa-fw"></i> {{ show.rating.average }}
+              </div>
+
+              <div class="no-rating" v-else>
+                <i class="fas fa-star fa-fw"></i>
+              </div>
+              <div><i class="fas fa-clock fa-fw ml-3"></i> {{ show.runtime }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div v-else-if="!loading && !tvShows.length" class="row">
+      <div class="col-md-12">
+          <div class="alert alert-danger text-center">No Data Found</div>
+      </div>
+  </div>
+  
+  
+</template>
+
+<script setup>
+import { useStore } from "vuex";
+import { computed, onMounted } from "vue";
+const store = useStore();
+//    const tvShows = computed(() => store.getters.GET_TV_SHOWS);
+const tvShows = computed(() => store.state.homeshows);
+const loading = computed(() => store.state.loading);
+onMounted(() => {
+  store.dispatch("ACTION_HOME");
+});
+</script>
