@@ -19,7 +19,7 @@
             >Run Time</a
           >
         </li>
-         <li>
+        <li>
           <a
             @click="sortData('Premiered')"
             :class="premieredSel ? 'selected-sort' : ''"
@@ -29,8 +29,6 @@
         </li>
       </ul>
     </div>
-
-   
   </div>
 </template>
 
@@ -43,27 +41,24 @@ const popularitySel = ref(false);
 const runtimeSel = ref(false);
 const premieredSel = ref(false);
 
-function sortData(type){
-    if(type === 'Popularity'){
-        popularitySel.value = true;
-        runtimeSel.value = false;
-        premieredSel.value = false
-       store.commit("MUTATE_BY_SORT", type);
-    }else if(type === 'Runtime'){
-        runtimeSel.value = true;
-        popularitySel.value = false;
-        premieredSel.value = false
-        store.commit("MUTATE_BY_SORT", type);
-    }else {
-        premieredSel.value = true
-        runtimeSel.value = false;
-        popularitySel.value = false;
-        store.commit("MUTATE_BY_SORT", type);
-    }
- }
-
- 
-
+function sortData(type) {
+  if (type === "Popularity") {
+    popularitySel.value = true;
+    runtimeSel.value = false;
+    premieredSel.value = false;
+    store.commit("MUTATE_BY_SORT", type);
+  } else if (type === "Runtime") {
+    runtimeSel.value = true;
+    popularitySel.value = false;
+    premieredSel.value = false;
+    store.commit("MUTATE_BY_SORT", type);
+  } else {
+    premieredSel.value = true;
+    runtimeSel.value = false;
+    popularitySel.value = false;
+    store.commit("MUTATE_BY_SORT", type);
+  }
+}
 </script>
 <style>
 /* .showF{

@@ -1,36 +1,43 @@
 <template>
-  
-    <div class="header-wrapper"> 
-       <div>
-         <img class="logo-img" src="../assets/tvm-header-logo.png" />
-       </div>
-       <div class="search">
-                <input type="text" class="searchTerm" v-model="searchtext" placeholder="Search Tv Shows">
-                <button type="submit" @click="searchData" class="searchButton">
-                   <i class="fa fa-search"></i>
-                </button>
-       </div>
+  <div class="header-wrapper">
+    <div>
+      <img class="logo-img" src="../assets/tvm-header-logo.png" />
     </div>
-   
-
+    <div class="search">
+      <input
+        type="text"
+        class="searchTerm"
+        v-model="searchtext"
+        placeholder="Search Tv Shows"
+      />
+      <button type="submit" @click="searchData" class="searchButton">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
 </template>
 <script setup>
-   import { ref  } from "vue";
-   import { useRouter, useRoute } from 'vue-router'
-   const route = useRoute()
-   const router = useRouter()
-   const searchtext = ref('');
-  
-   function searchData(){
-     console.log(searchtext)
-     if( route.path == "/" || route.query.key !== searchtext.value){
-         router.push({ path: "/Search", query: { key: searchtext.value } });
-     }
-   }
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const searchtext = ref("");
+
+function searchData() {
+  router.push({ path: "/Search", query: { key: searchtext.value } })
+}
 </script>
 <style>
-.header-wrapper{ padding:10px; display: flex; justify-content:space-between; text-align: left; background: #222; border-bottom:3px solid #45ab9f; }
-.logo-img{ width: 200px;}
+.header-wrapper {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  background: #222;
+  border-bottom: 3px solid #45ab9f;
+}
+.logo-img {
+  width: 200px;
+}
 
 /* .menuWrapper {
   border-bottom: 1px solid #ddd;
@@ -76,11 +83,11 @@
   height: 36px;
   border-radius: 36px 0 0 36px;
   outline: none;
-  color: #9DBFAF;
+  color: #9dbfaf;
 }
 
-.searchTerm:focus{
-  color: #00B4CC;
+.searchTerm:focus {
+  color: #00b4cc;
 }
 
 .searchButton {
@@ -96,7 +103,7 @@
 }
 
 /*Resize the wrap to see the search bar change!*/
-.wrap{
+.wrap {
   width: 30%;
   position: absolute;
   top: 50%;
@@ -104,10 +111,13 @@
   transform: translate(-50%, -50%);
 }
 
-
-@media only screen and (max-width: 768px){
-.logo-img { width:100px; margin-top: 5px;}
-.search{ margin-top: 5px;}
+@media only screen and (max-width: 768px) {
+  .logo-img {
+    width: 100px;
+    margin-top: 5px;
+  }
+  .search {
+    margin-top: 5px;
+  }
 }
-
 </style>

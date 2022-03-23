@@ -14,7 +14,7 @@
             <div class="container-field">
               <Cards />
               <div v-if="tvShows.length" class="row">
-                 <div class="col-md-12">
+                <div class="col-md-12">
                   <VueTailwindPagination
                     v-if="!loading"
                     :current="currentPage"
@@ -22,8 +22,8 @@
                     :per-page="perPage"
                     @page-changed="onPageClick($event)"
                   />
-                 </div>
-               </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -56,7 +56,7 @@ function onPageClick(page) {
   this.currentPage = page;
   store.commit("MUTATE_PAGE_NO", page);
   store.dispatch("ACTION_HOME");
-  console.log(page)
+  console.log(page);
 }
 window.onscroll = function () {
   scrollFunction();
