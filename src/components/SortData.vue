@@ -46,17 +46,17 @@ function sortData(type) {
     popularitySel.value = true;
     runtimeSel.value = false;
     premieredSel.value = false;
-    store.commit("MUTATE_BY_SORT", type);
+    store.dispatch("ACTION_SORT", type);
   } else if (type === "Runtime") {
     runtimeSel.value = true;
     popularitySel.value = false;
     premieredSel.value = false;
-    store.commit("MUTATE_BY_SORT", type);
+    store.dispatch("ACTION_SORT", type);
   } else {
     premieredSel.value = true;
     runtimeSel.value = false;
     popularitySel.value = false;
-    store.commit("MUTATE_BY_SORT", type);
+    store.dispatch("ACTION_SORT", type);
   }
 }
 </script>

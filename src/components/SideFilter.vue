@@ -2,13 +2,10 @@
   <div class="filter-block">
     <div class="filter-content">
       <h2 class="filter-head">Filters</h2>
-      <div>
+       <SlectTypes :selects = "selectItems" />
+      <!-- <div>
         <label>Genre</label>
-        <select
-          @change="filterData(selectedGenre, 'Genre')"
-          class="form-control"
-          v-model="selectedGenre"
-        >
+        <select @change="filterData(selectedGenre, 'Genre')" class="form-control" v-model="selectedGenre">
           <option value="">Select</option>
           <option value="Action">Action</option>
           <option value="Comedy">Comedy</option>
@@ -42,23 +39,50 @@
           <option value="The CW">The CW</option>
           <option value="NBC">NBC</option>
         </select>
-      </div>
+      </div> -->
       <!-- <button class="btn btn-primary app-filter-btn"> <i class="fas fa-filter"></i> APPLY FILTER </button> -->
     </div>
   </div>
 </template>
 
 <script setup>
-import { useStore } from "vuex";
-const store = useStore();
-import { ref } from "vue";
-const selectedGenre = ref("");
-const selectedCountry = ref("");
-const selectedNetwork = ref("");
-function filterData(val, type) {
-  // dispatch  homeshow homeshowhistory => clearFilter new action name
-  store.commit("MUTATE_FILTER", { val, type });
-}
+import { reactive } from "vue";
+import SlectTypes from "./SlectTypes.vue";
+
+
+
+const selectItems = reactive([
+   {
+      id:1,
+      typename : 'Genre',
+      selcted : '',
+      options : [{name:'Select', val:''},{name:'Comedy', val:'Comedy'},{name:'Crime', val:'Crime'},{name:'Drama', val:'Drama'}]
+   },
+   {
+      id:2,
+      typename : 'Country',
+      selcted : '',
+      options : [{name:'Select', val:''},{name:'United States', val:'United States'},{name:'United Kingdom', val:'United Kingdom'},{name:'Brazil', val:'Brazil'}]
+   },
+   {
+      id:3,
+      typename : 'Network',
+      selcted : '',
+      options : [{name:'Select', val:''},{name:'FOX', val:'FOX'},{name:'The CW', val:'The CW'},{name:'NBC', val:'NBC'}]
+   }
+]);
+
+
+// import { useStore } from "vuex";
+// const store = useStore();
+// import { ref } from "vue";
+// const selectedGenre = ref("");
+// const selectedCountry = ref("");
+// const selectedNetwork = ref("");
+// function filterData(val, type) {
+//   // dispatch  homeshow homeshowhistory => clearFilter new action name
+//   store.commit("MUTATE_FILTER", { val, type });
+// }
 </script>
 
 <style>

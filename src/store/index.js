@@ -29,26 +29,12 @@ export default createStore({
     MUTATE_SEARCH_RESULT(state, res) {
       state.searchshows = res;
     },
-    MUTATE_BY_SORT(state, type) {
-      if (type === 'Popularity') {
-        state.homeshows = state.homeshows.sort((a, b) => b.rating.average - a.rating.average);
-      } else if (type === 'Runtime') {
-        state.homeshows = state.homeshows.sort(function (a, b) { return b.runtime - a.runtime });
-      } else {
-        state.homeshows = state.homeshows.sort((a, b) => new Date(b.premiered) - new Date(a.premiered));
-      }
+    MUTATE_SORT(state, res){
+      state.searchshows = res;
     },
-    MUTATE_FILTER(state, { val, type }) {
-      if (type === 'Genre') {
-        state.homeshows = state.homeshows.filter(data => data.genres && data.genres.includes(val))
-      }
-      if (type === 'Country') {
-        state.homeshows = state.homeshows.filter(data => data.network && data.network.country && data.network.country.name.includes(val))
-      }
-      if (type === 'Network') {
-        state.homeshows = state.homeshows.filter(data => data.network && data.network.name && data.network.name.includes(val))
-      }
-
+    MUTATE_FILTER(state, res) {
+      console.log(res);
+      state.homeshows = res;
     }
   },
   actions: {
@@ -75,14 +61,38 @@ export default createStore({
           const resp = await TvShowsService.getSearchResult(payload);
           payload = resp.map(val => val.show);
         }
-
-        commit('MUTATE_SEARCH_RESULT', payload);
-
-
+       commit('MUTATE_SEARCH_RESULT', payload);
       } catch (err) {
         console.log(err);
       }
       commit('MUTATE_LOADING', false);
+    },
+    ACTION_SORT ({state, commit}, type){
+      let sortData = []
+      if (type === 'Popularity') {
+        sortData = state.homeshows.sort((a, b) => b.rating.average - a.rating.average);
+      } else if (type === 'Runtime') {
+        sortData = state.homeshows.sort(function (a, b) { return b.runtime - a.runtime });
+      } else {
+        sortData = state.homeshows.sort((a, b) => new Date(b.premiered) - new Date(a.premiered));
+      }
+      commit('MUTATE_SORT', sortData);
+    },
+    ACTION_FILTER({state, commit}, select ) {
+      let filteredData = []
+      if(select.val == ''){
+        state.homeshows = []
+      }
+      if (select.type === 'Genre') {
+        filteredData = state.historyHomeshows.filter(data => data.genres && data.genres.includes(select.val))
+      }
+      if (select.type === 'Country') {
+        filteredData = state.historyHomeshows.filter(data => data.network && data.network.country && data.network.country.name.includes(select.val))
+      }
+      if (select.type === 'Network') {
+        filteredData = state.historyHomeshows.filter(data => data.network && data.network.name && data.network.name.includes(select.val))
+      }
+      commit('MUTATE_FILTER', filteredData);
     }
   }
 });
