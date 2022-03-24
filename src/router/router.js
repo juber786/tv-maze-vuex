@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import store from '../store/index';
 import Dashboard from '../components/Dashboard.vue';
 import SearchDetails from '../components/SearchDetails.vue';
+import TvShowDetails from '../components/TvShowDetails.vue';
 
 const routes = [
     {
@@ -28,12 +29,12 @@ const routes = [
             }
             return true;
         },
-    }
-    // {
-    //     path:'/tvShow/id=:id',
-    //     name:'TvShowsDetails',
-    //     component:TvShowsDetails
-    // }
+    },
+    {
+        path:'/tvShow/id=:id',
+        name:'TvShowsDetails',
+        component:TvShowDetails
+    },
     // {
     //     path:'/tvShows',
     //     name:'TvShows',

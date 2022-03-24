@@ -5,6 +5,7 @@ export default createStore({
   state: {
     pageNo: 0,
     homeshows: [],
+    homeshowsdetails: {},
     searchshows: [],
     historyHomeshows: [],
     loading: false,
@@ -29,6 +30,9 @@ export default createStore({
     MUTATE_SEARCH_RESULT(state, res) {
       state.searchshows = res;
     },
+    MUTATE_TVSHOW_DETAILS(state, res) {
+      state.homeshowsdetails = res
+    },
     MUTATE_SORT(state, res){
       state.searchshows = res;
     },
@@ -46,6 +50,19 @@ export default createStore({
       try {
         const resp = await TvShowsService.getTvShowByPage(state.pageNo);
         commit('MUTATE_HOME_RESPONSE', resp);
+      } catch (err) {
+        console.log(err);
+      }
+      commit('MUTATE_LOADING', false);
+    },
+    async ACTION_TVSHOW_DETAILS({ state, commit }, id) {
+      if (state.error) {
+        commit('MUTATE_ERROR', false);
+      }
+      commit('MUTATE_LOADING', true);
+      try {
+        const resp = await TvShowsService.getTvShowDetails(id);
+        commit('MUTATE_TVSHOW_DETAILS', resp);
       } catch (err) {
         console.log(err);
       }

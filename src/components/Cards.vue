@@ -1,7 +1,7 @@
 <template>
   <div v-if="tvShows.length" class="row">
       <div class="col-md-3 col-6" v-for="show in tvShows" :key="show.id">
-        <div class="cards-block">
+        <div class="cards-block" @click="showDetails(show.id)">
           <span class="lang">{{ show.language }}</span>
           <img
             v-if="show.image && show.image.medium"
@@ -44,13 +44,18 @@
 </template>
 
 <script setup>
-import { useStore } from "vuex";
+import { useStore, } from "vuex";
 import { computed, onMounted } from "vue";
+import { useRouter} from "vue-router";
+const router = useRouter();
 const store = useStore();
-//    const tvShows = computed(() => store.getters.GET_TV_SHOWS);
 const tvShows = computed(() => store.state.homeshows);
 const loading = computed(() => store.state.loading);
 onMounted(() => {
   store.dispatch("ACTION_HOME");
 });
+function showDetails(id){
+   router.push({ path: `/tvShow/id=${id}`});
+    
+}
 </script>
