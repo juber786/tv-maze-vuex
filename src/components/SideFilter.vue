@@ -3,44 +3,6 @@
     <div class="filter-content">
       <h2 class="filter-head">Filters</h2>
        <SlectTypes :selects = "selectItems" />
-      <!-- <div>
-        <label>Genre</label>
-        <select @change="filterData(selectedGenre, 'Genre')" class="form-control" v-model="selectedGenre">
-          <option value="">Select</option>
-          <option value="Action">Action</option>
-          <option value="Comedy">Comedy</option>
-          <option value="Crime">Crime</option>
-          <option value="Drama">Drama</option>
-        </select>
-      </div>
-      <div>
-        <label>Country</label>
-        <select
-          @change="filterData(selectedCountry, 'Country')"
-          class="form-control"
-          v-model="selectedCountry"
-        >
-          <option value="">Select</option>
-          <option value="United States">United States</option>
-          <option value="United Kingdom">United Kingdom</option>
-          <option value="Brazil">Brazil</option>
-          <option value="France">France</option>
-        </select>
-      </div>
-      <div>
-        <label>Network</label>
-        <select
-          @change="filterData(selectedNetwork, 'Network')"
-          class="form-control"
-          v-model="selectedNetwork"
-        >
-          <option value="">Select</option>
-          <option value="FOX">FOX</option>
-          <option value="The CW">The CW</option>
-          <option value="NBC">NBC</option>
-        </select>
-      </div> -->
-      <!-- <button class="btn btn-primary app-filter-btn"> <i class="fas fa-filter"></i> APPLY FILTER </button> -->
     </div>
   </div>
 </template>

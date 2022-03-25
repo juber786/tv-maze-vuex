@@ -33,6 +33,8 @@ function searchData() {
   store.dispatch("SEARCH_DATA", searchtext.value);
   router.push({ path: "/Search", query: { key: searchtext.value } });
 }
+
+
 </script>
 <style>
 .header-wrapper {

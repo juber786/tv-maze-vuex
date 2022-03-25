@@ -12,7 +12,7 @@
           <SortData />
           <div class="card-wrapper">
             <div class="container-field">
-              <Cards />
+              <Cards :tvShows="tvShows" />
               <div v-if="tvShows.length" class="row">
                 <div class="col-md-12">
                   <VueTailwindPagination
@@ -37,20 +37,24 @@
 
 <script setup>
 import { useStore } from "vuex";
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import "@ocrv/vue-tailwind-pagination/dist/style.css";
 import VueTailwindPagination from "@ocrv/vue-tailwind-pagination";
 import Cards from "./Cards.vue";
 import SideFilter from "./SideFilter.vue";
 import SortData from "./SortData.vue";
 const store = useStore();
+const loading = computed(() => store.state.loading);
+const tvShows = computed(() => store.state.homeshows);
+
 const currentPage = ref(1);
 const perPage = ref(2);
 const total = ref(100);
 const scrolling = ref(false);
-const loading = computed(() => store.state.loading);
-const tvShows = computed(() => store.state.homeshows);
 
+onMounted(() => {
+  store.dispatch("ACTION_HOME");
+});
 function onPageClick(page) {
   goTop();
   this.currentPage = page;

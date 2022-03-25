@@ -34,7 +34,7 @@ const routes = [
         path:'/tvShow/id=:id',
         name:'TvShowsDetails',
         component:TvShowDetails
-    },
+    }
     // {
     //     path:'/tvShows',
     //     name:'TvShows',

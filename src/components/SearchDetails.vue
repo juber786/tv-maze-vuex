@@ -4,63 +4,50 @@
       <div class="loader"></div>
     </div>
     <div v-else class="container-fluid">
-      <div class="back-list-wrap">
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <router-link to="/" class="back-list"> Back To List </router-link>
-            <br />
-            Search Results : <span class="count"> {{ tvShows.length }} </span>
-          </div>
-          <!-- <div class="col-md-6 text-right"></div> -->
+      <div class="content-holder">
+        <div class="filter-holder">
+          <SideFilter/>
         </div>
-      </div>
-
-      <div class="search-container">
-        <div class="ser-items" v-for="show in tvShows" :key="show.id">
-          <div class="cards-block">
-            <span class="lang">{{ show.language }}</span>
-            <img
-              v-if="show.image && show.image.medium"
-              class="imgSm"
-              :src="show.image.medium"
-            />
-            <div class="card-details">
-              <h2 class="card-title">{{ show.name }}</h2>
-              <div v-if="show.genres.length">
-                <span
-                  class="mo-type"
-                  v-for="(genre, index) in show.genres"
-                  :key="index"
-                  >{{ genre }}&nbsp;</span
-                >
+         <div class="card-sort-holder">
+         <div class="container-field">
+           <div class="back-list-wrap">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <router-link to="/" class="back-list"> Back To List </router-link>
+                <br />
+                Search Results : <span class="count"> {{ tvShows.length }} </span>
+                
               </div>
-              <div v-else><span class="mo-type">NA</span></div>
-
-              <div class="rating">
-                <div v-if="show.rating.average">
-                  <i class="fas fa-star fa-fw"></i> {{ show.rating.average }}
-                </div>
-
-                <div class="no-rating" v-else>
-                  <i class="fas fa-star fa-fw"></i>
-                </div>
-                <div>
-                  <i class="fas fa-clock fa-fw ml-3"></i> {{ show.runtime }}
-                </div>
-              </div>
+              <!-- <div class="col-md-6 text-right"></div> -->
             </div>
           </div>
-        </div>
+         </div>
+            <SortData /> 
+              <div class="card-wrapper">
+                  <div class="container-field">
+                     <Cards :tvShows="tvShows" />
+                  </div>
+              </div>
+
+         </div>
       </div>
-    </div>
+   </div>
   </section>
 </template>
 <script setup>
 import { useStore } from "vuex";
-import { computed } from "vue";
+import {computed} from "vue";
+import SideFilter from "./SideFilter.vue";
+import SortData from "./SortData.vue";
+import Cards from "./Cards.vue";
+
 const store = useStore();
-const tvShows = computed(() => store.state.searchshows);
+
+
+const tvShows = computed(() => store.state.homeshows);
 const loading = computed(() => store.state.loading);
+
+
 
 </script>
 <style>
@@ -75,15 +62,16 @@ const loading = computed(() => store.state.loading);
 }
 
 .back-list-wrap {
-  margin-bottom: 25px;
+  margin-bottom: 10px;
+  padding:0px 10px;
 }
 .back-list {
   color: #45ab9f;
   position: absolute;
   left: 15px;
   top: 15px;
-  margin-bottom: 10px;
-}
+  margin-bottom: 10px;}
+  
 .count {
   font-weight: bold;
   color: #45ab9f;

@@ -6,7 +6,7 @@ export default createStore({
     pageNo: 0,
     homeshows: [],
     homeshowsdetails: {},
-    searchshows: [],
+    // searchshows: [],
     historyHomeshows: [],
     loading: false,
     error: false,
@@ -28,13 +28,13 @@ export default createStore({
       state.pageNo = page
     },
     MUTATE_SEARCH_RESULT(state, res) {
-      state.searchshows = res;
+      state.homeshows = res;
     },
     MUTATE_TVSHOW_DETAILS(state, res) {
       state.homeshowsdetails = res
     },
     MUTATE_SORT(state, res){
-      state.searchshows = res;
+      state.homeshows = res;
     },
     MUTATE_FILTER(state, res) {
       console.log(res);

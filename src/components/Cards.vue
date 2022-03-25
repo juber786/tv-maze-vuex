@@ -1,6 +1,6 @@
 <template>
-  <div v-if="tvShows.length" class="row">
-      <div class="col-md-3 col-6" v-for="show in tvShows" :key="show.id">
+  <div v-if="props.tvShows.length" class="row">
+      <div class="col-md-3 col-6" v-for="show in props.tvShows" :key="show.id">
         <div class="cards-block" @click="showDetails(show.id)">
           <span class="lang">{{ show.language }}</span>
           <img
@@ -34,7 +34,7 @@
         </div>
       </div>
   </div>
-  <div v-else-if="!loading && !tvShows.length" class="row">
+  <div v-else-if="!loading && !props.tvShows.length" class="row">
       <div class="col-md-12">
           <div class="alert alert-danger text-center">No Data Found</div>
       </div>
@@ -45,14 +45,16 @@
 
 <script setup>
 import { useStore, } from "vuex";
-import { computed, onMounted } from "vue";
+import { computed, defineProps } from "vue";
 import { useRouter} from "vue-router";
 const router = useRouter();
 const store = useStore();
-const tvShows = computed(() => store.state.homeshows);
+// const tvShows = computed(() => store.state.homeshows);
 const loading = computed(() => store.state.loading);
-onMounted(() => {
-  store.dispatch("ACTION_HOME");
+
+
+const props = defineProps({
+  tvShows: Array,
 });
 function showDetails(id){
    router.push({ path: `/tvShow/id=${id}`});
