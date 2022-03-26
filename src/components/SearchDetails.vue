@@ -1,14 +1,8 @@
 <template>
-  <section class="main-block">
+  
     <div v-if="loading" class="overlay">
       <div class="loader"></div>
     </div>
-    <div v-else class="container-fluid">
-      <div class="content-holder">
-        <div class="filter-holder">
-          <SideFilter/>
-        </div>
-         <div class="card-sort-holder">
          <div class="container-field">
            <div class="back-list-wrap">
             <div class="row">
@@ -22,23 +16,14 @@
             </div>
           </div>
          </div>
-            <SortData /> 
-              <div class="card-wrapper">
-                  <div class="container-field">
-                     <Cards :tvShows="tvShows" />
-                  </div>
-              </div>
+         <Cards v-if="tvShows.length" :tvShows="tvShows" />
+   
 
-         </div>
-      </div>
-   </div>
-  </section>
 </template>
 <script setup>
 import { useStore } from "vuex";
 import {computed} from "vue";
-import SideFilter from "./SideFilter.vue";
-import SortData from "./SortData.vue";
+
 import Cards from "./Cards.vue";
 
 const store = useStore();

@@ -6,7 +6,11 @@ export default createStore({
     pageNo: 0,
     homeshows: [],
     homeshowsdetails: {},
-    // searchshows: [],
+    allFilterVal: {
+      Genre: '',
+      Country: '',
+      Network: ''
+    },
     historyHomeshows: [],
     loading: false,
     error: false,
@@ -14,7 +18,6 @@ export default createStore({
   },
   mutations: {
     MUTATE_HOME_RESPONSE(state, res) {
-      console.log(res);
       state.homeshows = res;
       state.historyHomeshows = res
     },
@@ -27,18 +30,14 @@ export default createStore({
     MUTATE_PAGE_NO(state, page) {
       state.pageNo = page
     },
-    MUTATE_SEARCH_RESULT(state, res) {
-      state.homeshows = res;
-    },
     MUTATE_TVSHOW_DETAILS(state, res) {
       state.homeshowsdetails = res
     },
-    MUTATE_SORT(state, res){
+    MUTATE_SET_HOMESHOWS(state, res) {
       state.homeshows = res;
     },
-    MUTATE_FILTER(state, res) {
-      console.log(res);
-      state.homeshows = res;
+    MUTATE_FILTER(state, { type, value }) {
+      state.allFilterVal[type] = value;
     }
   },
   actions: {
@@ -78,13 +77,13 @@ export default createStore({
           const resp = await TvShowsService.getSearchResult(payload);
           payload = resp.map(val => val.show);
         }
-       commit('MUTATE_SEARCH_RESULT', payload);
+        commit('MUTATE_HOME_RESPONSE', payload);
       } catch (err) {
         console.log(err);
       }
       commit('MUTATE_LOADING', false);
     },
-    ACTION_SORT ({state, commit}, type){
+    ACTION_SORT({ state, commit }, type) {
       let sortData = []
       if (type === 'Popularity') {
         sortData = state.homeshows.sort((a, b) => b.rating.average - a.rating.average);
@@ -93,23 +92,38 @@ export default createStore({
       } else {
         sortData = state.homeshows.sort((a, b) => new Date(b.premiered) - new Date(a.premiered));
       }
-      commit('MUTATE_SORT', sortData);
+      commit('MUTATE_SET_HOMESHOWS', sortData);
     },
-    ACTION_FILTER({state, commit}, select ) {
-      let filteredData = []
-      if(select.val == ''){
-        state.homeshows = []
+    ACTION_FILTER({ state, commit }, { type, value }) {
+      console.log("Action :", type, value)
+      let filteredData = [];
+      if (value === '' || state.allFilterVal[type] && state.allFilterVal[type] !== value) {
+        filteredData = state.historyHomeshows;
+        commit('MUTATE_FILTER', { type, value });
+        Object.keys(state.allFilterVal).forEach((item) => {
+          
+          if (state.allFilterVal[item]) {
+            filteredData = filteringLogic(item, filteredData, state.allFilterVal[item]);
+          }
+        });
+      } 
+      else {
+        commit('MUTATE_FILTER', { type, value });
+        filteredData = filteringLogic(type, state.homeshows, value);
       }
-      if (select.type === 'Genre') {
-        filteredData = state.historyHomeshows.filter(data => data.genres && data.genres.includes(select.val))
-      }
-      if (select.type === 'Country') {
-        filteredData = state.historyHomeshows.filter(data => data.network && data.network.country && data.network.country.name.includes(select.val))
-      }
-      if (select.type === 'Network') {
-        filteredData = state.historyHomeshows.filter(data => data.network && data.network.name && data.network.name.includes(select.val))
-      }
-      commit('MUTATE_FILTER', filteredData);
+      commit('MUTATE_SET_HOMESHOWS', filteredData);
     }
   }
 });
+const filteringLogic = (item, showsArray, value) => {
+  switch (item) {
+    case 'Country':
+      return showsArray.filter(data => data?.network?.country?.name.includes(value))
+    case 'Genre':
+      return showsArray.filter(data => data?.genres?.includes(value))
+    case 'Network':
+      return showsArray.filter(data => data?.network?.name?.includes(value))
+    default:
+      return;
+  }
+}

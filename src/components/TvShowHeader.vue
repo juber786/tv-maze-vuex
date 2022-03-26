@@ -7,9 +7,8 @@
       <input
         type="text"
         class="searchTerm"
-        :value="searchtextValue"
+        v-model="searchtext"
         placeholder="Search Tv Shows"
-        @input="(e) => (searchtext = e.target.value)"
       />
       <button type="submit" @click="searchData" class="searchButton">
         <i class="fa fa-search"></i>
@@ -18,22 +17,17 @@
   </div>
 </template>
 <script setup>
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { useStore } from "vuex";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 const router = useRouter();
-const route = useRoute();
 const store = useStore();
 const searchtext =  ref("");
-const searchtextValue = computed(()=>{
-  return !searchtext.value ? route.query.key : searchtext.value;
-});
 
 function searchData() {
   store.dispatch("SEARCH_DATA", searchtext.value);
   router.push({ path: "/Search", query: { key: searchtext.value } });
 }
-
 
 </script>
 <style>

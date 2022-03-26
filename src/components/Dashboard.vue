@@ -1,38 +1,24 @@
 <template>
-  <section class="main-block">
-    <div v-if="loading" class="overlay">
-      <div class="loader"></div>
-    </div>
-    <div class="container-fluid">
-      <div class="content-holder">
-        <div class="filter-holder">
-          <SideFilter />
-        </div>
-        <div class="card-sort-holder">
-          <SortData />
-          <div class="card-wrapper">
-            <div class="container-field">
-              <Cards :tvShows="tvShows" />
-              <div v-if="tvShows.length" class="row">
-                <div class="col-md-12">
-                  <VueTailwindPagination
-                    v-if="!loading"
-                    :current="currentPage"
-                    :total="total"
-                    :per-page="perPage"
-                    @page-changed="onPageClick($event)"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+  
+   
+    
+    <Cards v-if="tvShows.length" :tvShows="tvShows" />
+    <div v-if="tvShows.length" class="row">
+      <div class="col-md-12">
+        <VueTailwindPagination
+          v-if="!loading"
+          :current="currentPage"
+          :total="total"
+          :per-page="perPage"
+          @page-changed="onPageClick($event)"
+        />
       </div>
     </div>
-  </section>
-  <div v-if="scrolling" @click="goTop" class="scroll-top">
-    <i class="fa-solid fa-arrow-up"></i>
-  </div>
+           
+  
+    <div v-if="scrolling" @click="goTop" class="scroll-top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </div>
 </template>
 
 <script setup>
@@ -41,10 +27,9 @@ import { ref, computed, onMounted } from "vue";
 import "@ocrv/vue-tailwind-pagination/dist/style.css";
 import VueTailwindPagination from "@ocrv/vue-tailwind-pagination";
 import Cards from "./Cards.vue";
-import SideFilter from "./SideFilter.vue";
-import SortData from "./SortData.vue";
-const store = useStore();
 const loading = computed(() => store.state.loading);
+const store = useStore();
+
 const tvShows = computed(() => store.state.homeshows);
 
 const currentPage = ref(1);
