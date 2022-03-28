@@ -34,7 +34,7 @@
 
 <script setup>
 import { ref } from "vue";
-//    const tabSelected = computed(() => true)
+
 import { useStore } from "vuex";
 const store = useStore();
 const popularitySel = ref(false);

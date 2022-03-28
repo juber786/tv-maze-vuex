@@ -1,4 +1,5 @@
 <template>
+   
   <div v-if="props.tvShows.length" class="row">
     <div class="col-md-3 col-6" v-for="show in props.tvShows" :key="show.id">
       <div class="cards-block" @click="showDetails(show.id)">
@@ -36,11 +37,12 @@
       </div>
     </div>
   </div>
-  <div v-else-if="!loading && !props.tvShows.length" class="row">
+  <div v-else-if="!loading && !tvShowsL.length" class="row">
     <div class="col-md-12">
       <div class="alert alert-danger text-center">No Data Found</div>
     </div>
   </div>
+  
 </template>
 
 <script setup>
@@ -49,7 +51,7 @@ import { computed, defineProps } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const store = useStore();
-// const tvShows = computed(() => store.state.homeshows);
+const tvShowsL = computed(() => store.state.homeshows);
 const loading = computed(() => store.state.loading);
 
 const props = defineProps({

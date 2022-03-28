@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import store from '../store/index';
-import Dashboard from '../components/Dashboard.vue';
-import SearchDetails from '../components/SearchDetails.vue';
-import TvShowDetails from '../components/TvShowDetails.vue';
+import Dashboard from '../views/Dashboard.vue';
+import SearchDetails from '../views/SearchDetails.vue';
+import TvShowDetails from '../views/TvShowDetails.vue';
 
 const routes = [
     {
@@ -13,8 +13,13 @@ const routes = [
             // reject the navigation
             if (from.path === '/Search') {
                 store.dispatch('SEARCH_DATA', '');
+                let getSearch = document.getElementsByClassName('searchTerm')[0];
+                getSearch.value = '';
             }
             return true;
+        },
+        meta: {
+            layout: 'ListLayout',
         },
     },
     {
@@ -23,23 +28,27 @@ const routes = [
         component: SearchDetails,
         beforeEnter: (to, from) => {
             // reject the navigation
-            console.log('...check..', to, from);
             if (!from.matched.length && to.query.key) {
                 store.dispatch('SEARCH_DATA', to.query.key);
             }
             return true;
         },
+        meta: {
+            layout: 'ListLayout',
+        },
     },
     {
-        path:'/tvShow/id=:id',
-        name:'TvShowsDetails',
-        component:TvShowDetails
+        path: '/tvShow/id=:id',
+        name: 'TvShowsDetails',
+        component: TvShowDetails,
+        beforeEnter: (to, from) => {
+            store.dispatch('ACTION_ROUTE_FROM', from.fullPath);
+        },
+        meta: {
+            layout: 'DetailsLayout',
+        },
     }
-    // {
-    //     path:'/tvShows',
-    //     name:'TvShows',
-    //     component:TvShows
-    // },
+
 
 
 

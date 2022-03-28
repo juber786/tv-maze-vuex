@@ -1,39 +1,17 @@
 <template>
-  
-    <div v-if="loading" class="overlay">
-      <div class="loader"></div>
-    </div>
-         <div class="container-field">
-           <div class="back-list-wrap">
-            <div class="row">
-              <div class="col-md-12 text-center">
-                <router-link to="/" class="back-list"> Back To List </router-link>
-                <br />
-                Search Results : <span class="count"> {{ tvShows.length }} </span>
-                
-              </div>
-              <!-- <div class="col-md-6 text-right"></div> -->
-            </div>
-          </div>
-         </div>
-         <Cards v-if="tvShows.length" :tvShows="tvShows" />
-   
+  <div class="back-list-wrap text-center">
+    <router-link to="/" class="back-list"> Back To List </router-link>
 
+    Search Results : <span class="count"> {{ tvShows.length }} </span>
+  </div>
+  <Cards v-if="tvShows" :tvShows="tvShows" />
 </template>
 <script setup>
 import { useStore } from "vuex";
-import {computed} from "vue";
-
-import Cards from "./Cards.vue";
-
+import { computed } from "vue";
+import Cards from "../components/Cards.vue";
 const store = useStore();
-
-
 const tvShows = computed(() => store.state.homeshows);
-const loading = computed(() => store.state.loading);
-
-
-
 </script>
 <style>
 .search-container {
@@ -47,16 +25,17 @@ const loading = computed(() => store.state.loading);
 }
 
 .back-list-wrap {
+  position: relative;
   margin-bottom: 10px;
-  padding:0px 10px;
 }
 .back-list {
   color: #45ab9f;
   position: absolute;
-  left: 15px;
-  top: 15px;
-  margin-bottom: 10px;}
-  
+  left: 0px;
+  top: 2px;
+  margin-bottom: 10px;
+}
+
 .count {
   font-weight: bold;
   color: #45ab9f;

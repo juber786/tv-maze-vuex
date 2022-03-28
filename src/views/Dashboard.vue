@@ -1,24 +1,16 @@
 <template>
-  
-   
-    
-    <Cards v-if="tvShows.length" :tvShows="tvShows" />
-    <div v-if="tvShows.length" class="row">
-      <div class="col-md-12">
-        <VueTailwindPagination
-          v-if="!loading"
-          :current="currentPage"
-          :total="total"
-          :per-page="perPage"
-          @page-changed="onPageClick($event)"
-        />
-      </div>
+  <Cards v-if="tvShows" :tvShows="tvShows" />
+  <div v-if="tvShows.length" class="row">
+    <div class="col-md-12">
+      <VueTailwindPagination
+        v-if="!loading"
+        :current="currentPage"
+        :total="total"
+        :per-page="perPage"
+        @page-changed="onPageClick($event)"
+      />
     </div>
-           
-  
-    <div v-if="scrolling" @click="goTop" class="scroll-top">
-      <i class="fa-solid fa-arrow-up"></i>
-    </div>
+  </div>
 </template>
 
 <script setup>
@@ -26,16 +18,13 @@ import { useStore } from "vuex";
 import { ref, computed, onMounted } from "vue";
 import "@ocrv/vue-tailwind-pagination/dist/style.css";
 import VueTailwindPagination from "@ocrv/vue-tailwind-pagination";
-import Cards from "./Cards.vue";
+import Cards from "../components/Cards.vue";
 const loading = computed(() => store.state.loading);
 const store = useStore();
-
 const tvShows = computed(() => store.state.homeshows);
-
 const currentPage = ref(1);
 const perPage = ref(2);
 const total = ref(100);
-const scrolling = ref(false);
 
 onMounted(() => {
   store.dispatch("ACTION_HOME");
@@ -46,14 +35,6 @@ function onPageClick(page) {
   store.commit("MUTATE_PAGE_NO", page);
   store.dispatch("ACTION_HOME");
   console.log(page);
-}
-window.onscroll = function () {
-  scrollFunction();
-};
-function scrollFunction() {
-  document.body.scrollTop > 20 || document.documentElement.scrollTop > 20
-    ? (scrolling.value = true)
-    : (scrolling.value = false);
 }
 function goTop() {
   document.body.scrollTop = 0;

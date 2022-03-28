@@ -1,43 +1,40 @@
 <template>
-    <div v-if="loading" class="overlay">
-      <div class="loader"></div>
-    </div>
-    
-
-   <TvShowHeader />
-   <section class="main-block">
-         <div class="container-fluid">
-            <div class="content-holder">
-            <div class="filter-holder">
-               <SideFilter />
-            </div>
-            <div class="card-sort-holder">
-               
-               <SortData />
-               <div class="card-wrapper">
-                  <div class="container-field">
-                     <router-view></router-view>
-                  </div>
-            </div>
-         </div>
-         </div>
-      </div>
-  </section>
-   
+  <component :is="layout" />
+  <div v-if="scrolling" @click="goTop" class="scroll-top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </div>
 </template>
 
 <script setup>
-import '@/assets/main.css';
-import { computed} from "vue";
-import { useStore} from "vuex"
-import TvShowHeader from './components/TvShowHeader.vue'
-import SideFilter from "./components/SideFilter.vue";
-import SortData from "./components/SortData.vue";
-const store = useStore();
-const loading = computed(() => store.state.loading);
+import "@/assets/main.css";
+import ListLayout from "@/layouts/ListLayout";
+import DetailsLayout from "@/layouts/DetailsLayout";
 
+import { ref, watch, markRaw } from "vue";
+import { useRoute } from "vue-router";
+const route = useRoute();
+const layout = ref(null);
+const scrolling = ref(false);
+
+window.onscroll = function () {
+     scrollFunction();
+};
+
+function scrollFunction() {
+  document.body.scrollTop > 20 || document.documentElement.scrollTop > 20
+      ? (scrolling.value = true)
+      : (scrolling.value = false);
+}
+function goTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
+watch(route, (to) => {
+  if (to.meta.layout == "ListLayout") {
+    layout.value = markRaw(ListLayout);
+  } else {
+    layout.value = markRaw(DetailsLayout);
+  }
+});
 </script>
-
-<style>
-
-</style>

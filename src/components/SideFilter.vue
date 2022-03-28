@@ -12,7 +12,6 @@
 <script setup>
 import { reactive } from "vue";
 import SlectTypes from "./SlectTypes.vue";
-
 const selectItems = reactive([
   {
     id: 1,
@@ -48,25 +47,4 @@ const selectItems = reactive([
     ],
   },
 ]);
-
-// import { useStore } from "vuex";
-// const store = useStore();
-// import { ref } from "vue";
-// const selectedGenre = ref("");
-// const selectedCountry = ref("");
-// const selectedNetwork = ref("");
-// function filterData(val, type) {
-//   // dispatch  homeshow homeshowhistory => clearFilter new action name
-//   store.commit("MUTATE_SET_HOMESHOWS", { val, type });
-// }
 </script>
-
-<style>
-@media only screen and (max-width: 768px) {
-  /* .filter-content{
-     position: absolute;
-     width: calc(100% - 38px);
-     z-index: 100; display: none;
-  } */
-}
-</style>

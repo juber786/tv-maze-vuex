@@ -14,10 +14,12 @@ export default createStore({
     historyHomeshows: [],
     loading: false,
     error: false,
+    fromRoute : ''
 
   },
   mutations: {
     MUTATE_HOME_RESPONSE(state, res) {
+      console.log("Data:", res);
       state.homeshows = res;
       state.historyHomeshows = res
     },
@@ -38,6 +40,9 @@ export default createStore({
     },
     MUTATE_FILTER(state, { type, value }) {
       state.allFilterVal[type] = value;
+    },
+    MUTATE_ROUTE_FROM(state, route) {
+      state.fromRoute = route;
     }
   },
   actions: {
@@ -101,7 +106,6 @@ export default createStore({
         filteredData = state.historyHomeshows;
         commit('MUTATE_FILTER', { type, value });
         Object.keys(state.allFilterVal).forEach((item) => {
-          
           if (state.allFilterVal[item]) {
             filteredData = filteringLogic(item, filteredData, state.allFilterVal[item]);
           }
@@ -112,6 +116,9 @@ export default createStore({
         filteredData = filteringLogic(type, state.homeshows, value);
       }
       commit('MUTATE_SET_HOMESHOWS', filteredData);
+    },
+    ACTION_ROUTE_FROM ({commit}, route){
+      commit('MUTATE_ROUTE_FROM', route)
     }
   }
 });

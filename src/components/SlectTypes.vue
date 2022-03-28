@@ -4,13 +4,11 @@
     <select
       @change="(e) => filterData(e.target.value, props.filterType.typename)"
       class="form-control"
-      :value="activeSelectedValue"
-    >
+      :value="activeSelectedValue">
       <option
         v-for="(option, index) in props.filterType.options"
         :key="index"
-        :value="option.val"
-      >
+        :value="option.val">
         {{ option.name }}
       </option>
     </select>
@@ -28,7 +26,7 @@ const props = defineProps({
 async function filterData(val, type) {
   activeSelectedValue.value = val;
   console.log("Filter :", { value: val, type })
-  //Set all filter value
+  // Set all filter value
   // creat a mutation to save filter
   // dispatch  homeshow homeshowhistory => clearFilter new action name
   

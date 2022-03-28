@@ -153,4 +153,19 @@ input, select {
   .from-blue-400 {background:#45ab9f!important;}
 
   
-
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+   
+  }
+  
+ /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #45ab9f; 
+   
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #45ab9f; 
+  }

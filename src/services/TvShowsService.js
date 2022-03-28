@@ -3,10 +3,6 @@
 let baseURL = 'https://api.tvmaze.com/';
 
 export default {
-    async getTvShow(){
-        let output = await fetch(baseURL+'shows');
-        return await output.json();
-    },
     async getTvShowDetails(id){
         let output = await fetch(baseURL+`shows/${id}`);
         return await output.json();

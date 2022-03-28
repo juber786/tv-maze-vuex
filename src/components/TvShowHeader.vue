@@ -18,17 +18,15 @@
 </template>
 <script setup>
 import { ref } from "vue";
-import { useStore } from "vuex";
-import { useRouter } from "vue-router";
+import { useStore} from "vuex";
+import { useRouter} from "vue-router";
 const router = useRouter();
 const store = useStore();
-const searchtext =  ref("");
-
+const searchtext = ref("");
 function searchData() {
   store.dispatch("SEARCH_DATA", searchtext.value);
   router.push({ path: "/Search", query: { key: searchtext.value } });
 }
-
 </script>
 <style>
 .header-wrapper {
@@ -42,35 +40,6 @@ function searchData() {
 .logo-img {
   width: 200px;
 }
-
-/* .menuWrapper {
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 10px;
-}
-.menu {
-  margin-bottom: 0px;
-  padding: 0px;
-  margin-bottom: 25px;
-  margin-top: 10px;
-}
-.menu li {
-  list-style-type: none;
-  display: inline-block;
-  margin-right: 25px;
-}
-.menu li a {
-  display: block;
-}
-.router-link-active {
-  background: #222;
-  padding: 4px;
-  color: #fff;
-  border-radius: 5px;
-}
-.router-link-active:hover {
-  color: #fff;
-  text-decoration: none;
-} */
 
 .search {
   justify-content: right;
