@@ -11,7 +11,7 @@
         placeholder="Search Tv Shows"
       />
       <button type="submit" @click="searchData" class="searchButton">
-        <i class="fa fa-search"></i>
+        <i class="fa fa-search"></i>xxxG
       </button>
     </div>
   </div>
