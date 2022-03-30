@@ -1,5 +1,4 @@
 import { createStore } from 'vuex';
-// import TvShowsService from "../services/TvShowsService";
 
 export default createStore({
   state: {
@@ -14,12 +13,12 @@ export default createStore({
     historyHomeshows: [],
     loading: false,
     error: false,
-    fromRoute : ''
+    fromRoute: ''
   },
   mutations: {
     MUTATE_HOME_RESPONSE: jest.fn(),
     MUTATE_LOADING: jest.fn(),
-    MUTATE_ERROR:jest.fn(),
+    MUTATE_ERROR: jest.fn(),
     MUTATE_PAGE_NO: jest.fn(),
     MUTATE_TVSHOW_DETAILS: jest.fn(),
     MUTATE_SET_HOMESHOWS: jest.fn(),
@@ -32,6 +31,6 @@ export default createStore({
     SEARCH_DATA: jest.fn(),
     ACTION_SORT: jest.fn(),
     ACTION_FILTER: jest.fn(),
-    ACTION_ROUTE_FROM : jest.fn(),
-  }
+    ACTION_ROUTE_FROM: jest.fn(),
+  },
 });

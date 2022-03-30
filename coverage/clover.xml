@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1648538205056" clover="3.2.0">
-  <project timestamp="1648538205056" name="All files">
-    <metrics statements="9" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1" elements="10" coveredelements="9" complexity="0" loc="9" ncloc="9" packages="3" files="3" classes="3"/>
+<coverage generated="1648623765253" clover="3.2.0">
+  <project timestamp="1648623765253" name="All files">
+    <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1" elements="10" coveredelements="10" complexity="0" loc="9" ncloc="9" packages="3" files="3" classes="3"/>
     <package name="assets">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="tvm-header-logo.png" path="C:\Users\jpendhar\VueRND\tvshow_vuex_v1\src\assets\tvm-header-logo.png">
@@ -10,17 +10,17 @@
       </file>
     </package>
     <package name="components">
-      <metrics statements="8" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="TvShowHeader.vue" path="C:/Users/jpendhar/VueRND/tvshow_vuex_v1/src/components/TvShowHeader.vue">
-        <metrics statements="8" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="20" count="1" type="stmt"/>
         <line num="21" count="1" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
-        <line num="23" count="2" type="stmt"/>
-        <line num="24" count="2" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
-        <line num="27" count="2" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
       </file>
     </package>
     <package name="store._test_">
